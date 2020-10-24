@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "lib": ["ES6"],
+      "target": "es6",
+      "types": ["node"],
+      "moduleResolution": "node",
+      "pretty": true,
+      "module": "commonjs",
+      "outDir": "./build",
+      "noImplicitAny": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "sourceMap": true,
+      "watch": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
+    }

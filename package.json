@@ -1,0 +1,17 @@
+{
+  "name": "2020discordbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "main": "node build/index.js"
+  },
+  "author": "HissingCPU",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mysql": "^2.15.15",
+    "@types/ws": "^7.2.7",
+    "discord.js": "^12.3.1",
+    "mysql": "^2.18.1"
+  }
+}

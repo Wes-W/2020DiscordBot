@@ -7,7 +7,7 @@ export default class CommandCash extends Command
 {
     name: string = "cash";
 
-    run(msg: Message)
+    run(msg: Message, args: string[])
     {
         db.fetchUserByUID(msg.author.id).then((user: User) => {
 			msg.reply(user.cash);	

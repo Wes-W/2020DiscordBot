@@ -28,11 +28,10 @@ client.on('message', msg => {
 			CommandList.forEach((cmd) => {
 				if(cmd.name == input[1])
 				{
-					cmd.run(msg);
+					cmd.run(msg, input);
 				}
 			})
 		}
-	
 	}
 })
 

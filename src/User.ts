@@ -10,7 +10,7 @@ export class User
     }
 }
 
-class Item 
+export class Item 
 {
     itemid: number;
     name: string;
@@ -18,7 +18,7 @@ class Item
     rarity: Rarity;
 }
 
-class Rarity
+export class Rarity
 {
     id: number;
     name: string;

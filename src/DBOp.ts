@@ -1,5 +1,5 @@
 import { createConnection } from "mysql";
-import { User } from "./User";
+import { User, Item } from "./User";
 
 //mysql Conneciton
 var con = createConnection({
@@ -94,4 +94,32 @@ function MakeNewUser(UserID: string): any
 				
 		})
 	})	
+}
+
+export function SearchItemByName(ItemName: string): any
+{
+	return new Promise((resolve: any, reject: any) => 
+	{
+		con.query(`SELECT * FROM discordDB.Items WHERE Name='${ItemName}'`, function (err: any, result: any) {
+			if (err) 
+			{
+				console.log(err);
+				reject(err);
+			} else {
+				//Return Item with Item Class
+				try
+				{
+					var _item: Item = new Item()
+
+					_item.itemid = result[0].ItemID;
+					_item.name = result[0].Name;
+					_item.description = result[0].Description;
+					
+					resolve(_item);
+				} catch(TypeError) {
+					resolve(undefined);
+				}
+			}		
+		})
+	})
 }

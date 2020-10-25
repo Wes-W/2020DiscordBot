@@ -1,5 +1,5 @@
 import { createConnection } from "mysql";
-import { User, Item } from "./User";
+import { User, Item, Rarity} from "./User";
 
 //mysql Conneciton
 var con = createConnection({
@@ -111,15 +111,52 @@ export function SearchItemByName(ItemName: string): any
 				{
 					var _item: Item = new Item()
 
-					_item.itemid = result[0].ItemID;
-					_item.name = result[0].Name;
-					_item.description = result[0].Description;
+					//Fetch rarity
+					RarityByID(result[0].Rarities_idRarities).then((re: Rarity) => {
+						
+
+						_item.itemid = result[0].ItemID;
+						_item.name = result[0].Name;
+						_item.description = result[0].Description;
+						_item.rarity = re;
+						
+						resolve(_item);
+					})
 					
-					resolve(_item);
 				} catch(TypeError) {
 					resolve(undefined);
 				}
 			}		
+		})
+	})
+}
+
+export function RarityByID(ID: number)
+{
+	return new Promise((resolve: any, reject: any) => 
+	{
+		con.query(`SELECT * FROM discordDB.Rarities WHERE idRarities = '${ID}'`, function (err: any, result: any) {
+			if(err)
+			{
+				console.log(err)
+				reject(err)
+			} else 
+			{
+				try{
+					var _rarity: Rarity = new Rarity()
+
+					_rarity.name = result[0].Name;
+					_rarity.id = result[0].idRarities;
+					_rarity.RoleRate = result[0].RoleRate;
+					_rarity.color = result[0].Color;
+
+
+					resolve(_rarity)
+				} catch (TypeError)
+				{
+					reject();
+				}
+			}
 		})
 	})
 }

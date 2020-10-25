@@ -23,4 +23,5 @@ export class Rarity
     id: number;
     name: string;
     RoleRate: number;
+    color: string;
 }

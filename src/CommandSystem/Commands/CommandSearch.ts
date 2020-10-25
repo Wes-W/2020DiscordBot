@@ -19,20 +19,20 @@ export default class CommandSearch extends Command
                     try
                     {   //Found
                         const embed = new MessageEmbed()
-                                        .setColor("#0099ff")
+                                        .setColor(res.rarity.color)
                                         .setTitle("Item Search")
-                                        .addFields({name: "Name", value: res.name},{name: "Description", value: res.description})
+                                        .addFields({name: "Name", value: res.name},{name: "Description", value: res.description},{name: "Rarity", value: res.rarity.name})
         
                         msg.reply(embed);
                     } catch(TypeError)
                     {
                         //Not Found
-                        const embed = new MessageEmbed()
+                        const embed2 = new MessageEmbed()
                                         .setColor("#ff0000")
                                         .setTitle("Item Search")
                                         .addFields({name: "Uh Oh!", value: "No item with that name was found!"})
         
-                        msg.reply(embed);
+                        msg.reply(embed2);
                     }     
                 }).catch((err: any) => {
                     console.log(err)

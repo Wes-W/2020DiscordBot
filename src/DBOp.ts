@@ -1,5 +1,5 @@
 import { createConnection } from "mysql";
-import { User, Item, Rarity} from "./User";
+import { User, Item, Rarity, Case} from "./User";
 
 //mysql Conneciton
 var con = createConnection({
@@ -12,7 +12,7 @@ var con = createConnection({
 /*
     Fetches a User from the Database
 */
-export function fetchUserByUID(UserID: string): any {
+export function FetchUserByUID(UserID: string): any {
     return new Promise((resolve: any, reject: any) => {
 		con.query(`SELECT * FROM discordDB.Users WHERE uid='${UserID}'`, function (err: any, result: any) {
 			if (err) throw err;
@@ -96,7 +96,7 @@ function MakeNewUser(UserID: string): any
 	})	
 }
 
-export function SearchItemByName(ItemName: string): any
+export function FetchItemByName(ItemName: string): any
 {
 	return new Promise((resolve: any, reject: any) => 
 	{
@@ -112,7 +112,7 @@ export function SearchItemByName(ItemName: string): any
 					var _item: Item = new Item()
 
 					//Fetch rarity
-					RarityByID(result[0].Rarities_idRarities).then((re: Rarity) => {
+					FetchRarityByID(result[0].Rarities_idRarities).then((re: Rarity) => {
 						
 
 						_item.itemid = result[0].ItemID;
@@ -131,7 +131,7 @@ export function SearchItemByName(ItemName: string): any
 	})
 }
 
-export function RarityByID(ID: number)
+export function FetchRarityByID(ID: number)
 {
 	return new Promise((resolve: any, reject: any) => 
 	{
@@ -159,4 +159,57 @@ export function RarityByID(ID: number)
 			}
 		})
 	})
+}
+
+export function FetchPlayerInventory(UID: string)
+{
+	return new Promise((resolve: any, reject: any) => {
+		con.query(`SELECT Items.name, Amount FROM discordDB.UserItems INNER JOIN discordDB.Items ON discordDB.UserItems.Items_ItemID=discordDB.Items.ItemID WHERE Users_uid=${UID}`, function (err: any, result: any) {
+			if(err)
+			{
+				console.log(err)
+				reject();
+			} else 
+			{
+				resolve(result);
+			}
+		})
+	})
+}
+
+export function FetchCaseByID(ID: string)
+{
+	return new Promise((resolve: any, reject: any) => 
+	{
+		con.query(`SELECT * FROM discordDB.Cases WHERE Name='${ID}'`, function (err: any, result: any) {
+			if(err)
+			{
+				console.log(err)
+				reject(err)
+			} else
+			{
+				try{
+					var _case: Case = new Case(); 
+					_case.id = result[0].CaseID;
+					_case.name = result[0].Name;
+					_case.description = result[0].Description;
+
+					resolve(_case);
+				} catch (TypeError)
+				{
+					reject();
+				}
+			}
+		})
+	})
+}
+
+export function UserHasItem(UserID: string, ItemID: number)
+{
+	
+}
+
+export function GiveUserItem(UserID: string, ItemID: number)
+{
+
 }

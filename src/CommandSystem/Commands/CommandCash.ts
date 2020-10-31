@@ -5,11 +5,11 @@ import { User } from "../../User";
 
 export default class CommandCash extends Command 
 {
-    name: string = "cash";
+    name: string[] = ["cash"];
 
     run(msg: Message, args: string[])
     {
-        db.fetchUserByUID(msg.author.id).then((user: User) => {
+        db.FetchUserByUID(msg.author.id).then((user: User) => {
 			msg.reply(user.cash);	
 		}).catch((err: any) => {
 			console.log(err);

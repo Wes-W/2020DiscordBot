@@ -2,7 +2,7 @@ import { Message } from "discord.js";
 
 export class Command 
 {
-    name: string = "defaultname";
+    name: string[] = ["defaultname"];
     
 
     run(msg: Message, args: string[])

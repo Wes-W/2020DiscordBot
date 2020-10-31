@@ -25,3 +25,10 @@ export class Rarity
     RoleRate: number;
     color: string;
 }
+
+export class Case
+{
+    id: number;
+    name: string;
+    description: string;
+}

@@ -5,7 +5,7 @@ import { CommandList } from "./CommandSystem/Commands";
 const client = new Discord.Client();
 
 //ANCHOR Config
-var prefix: string = ".b";
+export var prefix: string = ".b";
 
 
 //NOTE: Start of Discord Bot
@@ -26,10 +26,12 @@ client.on('message', msg => {
 		if(input[0] == prefix)
 		{
 			CommandList.forEach((cmd) => {
-				if(cmd.name == input[1])
-				{
-					cmd.run(msg, input);
-				}
+				cmd.name.forEach((x) => {
+					if(x == input[1])
+					{
+						cmd.run(msg, input);
+					}
+				})
 			})
 		}
 	}

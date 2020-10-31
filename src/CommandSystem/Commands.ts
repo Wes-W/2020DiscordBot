@@ -23,4 +23,7 @@ CommandList.push(new CommandSearch);
 import { default as CommandTest } from "./Commands/CommandTest";
 CommandList.push(new CommandTest);
 
+import { default as CommandInventory } from "./Commands/CommandInventory";
+CommandList.push(new CommandInventory);
+
 //!SECTION

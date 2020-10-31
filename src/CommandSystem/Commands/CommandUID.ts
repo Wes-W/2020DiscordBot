@@ -5,7 +5,7 @@ import { Command } from "../CommandBase";
 
 export default class CommandUID extends Command 
 {
-    name: string = "uid";
+    name: string[] = ["uid"];
 
     run(msg: Message)
     {

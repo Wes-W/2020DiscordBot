@@ -1,7 +1,7 @@
 import { Message} from "discord.js";
 import { Command } from "../CommandBase";
-import { FetchUserByUID } from "../../DBOp";
-import { Item, User} from "../../User";
+import { FetchRarityByID } from "../../DBOp";
+import { Rarity } from "../../DBTypes";
 import { MessageEmbed} from "discord.js";
 
 export default class CommandTest extends Command 
@@ -10,10 +10,13 @@ export default class CommandTest extends Command
 
     run(msg: Message, args: string[])
     {
-        FetchUserByUID(msg.author.id).then((res: User) => {
-            msg.reply(res.cash);
-        }).catch((err: any) => {
-            console.log(err);
+        FetchRarityByID(1).then((res) => {
+            msg.reply(res.rarityname);
+        
+
+        }).catch((err) => {
+            console.log(err)
+            msg.reply("Ahhhhh")
         })
     }
 }

@@ -107,9 +107,6 @@ export function FetchRarityByID(ID: number): Promise<DBTypes.Rarity>
 			} else {
 				if(_Rarity)
 				{
-					console.log(_Rarity)
-
-	
 					resolve(_Rarity)
 				} else {
 					reject(null);
@@ -163,7 +160,7 @@ export function UserHasItem(UserID: string, ItemID: number)
 	
 }
 
-export function GiveUserItem(UserID: string, ItemID: number)
+export function GiveUserItem(UserID: string, ItemID: number, Amount: number)
 {
 
 }

@@ -1,9 +1,6 @@
 import { Message } from "discord.js";
 import { Command } from "../CommandBase";
-import { MessageEmbed } from "discord.js";
 import { FetchPlayerInventory, FetchItemByName } from "../../DBOp";
-import { Item } from "../../User";
-
 
 export default class CommandInventory extends Command 
 {
@@ -18,7 +15,7 @@ export default class CommandInventory extends Command
                     var tempmsg: string = "";
 
                     res.forEach((element: any) => {
-                       tempmsg += `${element.name} x${element.Amount} \n`;
+                       tempmsg += `${element.itemname} x${element.itemamount} \n`;
                     });
                     
                     msg.reply("```ml\nInventory:\n"+tempmsg+"```")
@@ -33,9 +30,5 @@ export default class CommandInventory extends Command
                 msg.reply("Error in commmand")
                 break;
         }
-
-        //1st Subcommand is show all
-
-        //ItemName, "x"Amount
     }
 }

@@ -1,7 +1,7 @@
-import { Message } from "discord.js";
+import { Message} from "discord.js";
 import { Command } from "../CommandBase";
-import { FetchItemByName } from "../../DBOp";
-import { Item } from "../../User";
+import { FetchUserByUID } from "../../DBOp";
+import { Item, User} from "../../User";
 import { MessageEmbed} from "discord.js";
 
 export default class CommandTest extends Command 
@@ -10,6 +10,10 @@ export default class CommandTest extends Command
 
     run(msg: Message, args: string[])
     {
-
+        FetchUserByUID(msg.author.id).then((res: User) => {
+            msg.reply(res.cash);
+        }).catch((err: any) => {
+            console.log(err);
+        })
     }
 }

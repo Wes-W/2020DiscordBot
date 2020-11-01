@@ -4,7 +4,7 @@ export class User
     cash: number = 100;
     item: Item[];
     
-    constructor(Uid: string)
+    constructor(Uid?: string)
     {
         this.uid = Uid;
     }
